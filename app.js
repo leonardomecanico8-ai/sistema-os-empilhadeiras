@@ -1,5 +1,5 @@
 // URL fornecida pelo Google Apps Script (Deixe em branco se for usar apenas local)
-const GOOGLE_SHEETS_URL = "SUA_URL_DO_GOOGLE_APPS_SCRIPT_AQUI";
+const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzTM-fZd6FlB0JMXd-5u9uZx8OjyAZba6I4tpaXuBGCzL0RJFt37P3BEuP3mhZJRM3Y6w/exec";
 
 let bancoOS = JSON.parse(localStorage.getItem('bancoOS')) || [];
 let osAtual = {};
