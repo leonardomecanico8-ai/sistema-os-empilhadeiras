@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Controle de O.S. - Manutenção de Empilhadeiras</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Bibliotecas externas para PDF e Ícones -->
+    <!-- Bibliotecas para geração de PDF e Ícones -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- BARRA LATERAL DE NAVEGAÇÃO -->
+    <!-- BARRA LATERAL -->
     <div class="sidebar">
-        <h2><i class="fa-solid fa-truck-ramp-box"></i> ForkLift OS</h2>
+        <h2><i class="fa-solid fa-screwdriver-wrench"></i> ForkLift OS</h2>
         <button onclick="showSection('dash-section')"><i class="fa-solid fa-chart-pie"></i> Dashboard</button>
         <button onclick="novaOS()"><i class="fa-solid fa-plus"></i> Nova O.S.</button>
         <button onclick="showSection('historico-section')"><i class="fa-solid fa-history"></i> Histórico de O.S.</button>
@@ -22,12 +22,12 @@
     <!-- CONTEÚDO PRINCIPAL -->
     <div class="main-content">
         
-        <!-- DASHBOARD SECTION -->
+        <!-- SEÇÃO: DASHBOARD -->
         <section id="dash-section" class="active">
             <h1>Painel de Indicadores</h1>
             <div class="dashboard-cards">
                 <div class="card card-blue">
-                    <h3>Total de O.S.</h3>
+                    <h3>Total de O.S. Ativas</h3>
                     <p id="dash-total">0</p>
                 </div>
                 <div class="card card-orange">
@@ -40,7 +40,7 @@
                 </div>
             </div>
             
-            <div class="Proximos-agendamentos">
+            <div class="proximos-agendamentos">
                 <h3><i class="fa-solid fa-calendar-days"></i> Próximos Atendimentos Agendados</h3>
                 <table id="table-agendados">
                     <thead>
@@ -48,7 +48,7 @@
                             <th>Nº O.S.</th>
                             <th>Cliente</th>
                             <th>Data Prevista</th>
-                            <th>Ações</th>
+                            <th>Ação</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
@@ -56,7 +56,7 @@
             </div>
         </section>
 
-        <!-- FORMULÁRIO DE O.S. SECTION -->
+        <!-- SEÇÃO: FORMULÁRIO DE O.S. -->
         <section id="form-section">
             <div class="form-header">
                 <h1>Ordem de Serviço Eletrônica</h1>
@@ -64,14 +64,13 @@
             </div>
 
             <form id="os-form" onsubmit="event.preventDefault();">
-                <!-- Dados do Técnico e Status -->
                 <div class="row">
                     <div class="col">
                         <label>Nome do Técnico *</label>
-                        <input type="text" id="tecnico" required placeholder="Nome completo">
+                        <input type="text" id="tecnico" required placeholder="Nome do mecânico">
                     </div>
                     <div class="col">
-                        <label>Status Inicial *</label>
+                        <label>Status da O.S. *</label>
                         <select id="status-os">
                             <option value="Agendado">Agendado (Em Planejamento)</option>
                             <option value="Em Andamento">Em Andamento (Campo)</option>
@@ -87,11 +86,11 @@
                         <div class="col">
                             <label>Selecione o Cliente *</label>
                             <select id="cliente-select" required>
-                                <option value="">-- Selecione um Cliente Cadastrado --</option>
+                                <option value="">-- Selecione um Cliente --</option>
                                 <option value="Logística Brasil S.A.">Logística Brasil S.A.</option>
                                 <option value="Supermercados Mundial">Supermercados Mundial</option>
                                 <option value="Transportadora Rápido SP">Transportadora Rápido SP</option>
-                                <option value="Indústria Metalúrgica Vale">Indústria Metalúrgica Vale</option>
+                                <option value="Almoxarifado Central">Almoxarifado Central</option>
                             </select>
                         </div>
                         <div class="col">
@@ -112,11 +111,11 @@
                     <legend>Dados da Empilhadeira e Horímetro</legend>
                     <div class="row">
                         <div class="col">
-                            <label>Modelo/Marca *</label>
-                            <input type="text" id="modelo-empilhadeira" required placeholder="Ex: Toyota 8FGU25">
+                            <label>Modelo / Marca da Empilhadeira *</label>
+                            <input type="text" id="modelo-empilhadeira" required placeholder="Ex: Toyota 8FGU25 / Hyster 50FT">
                         </div>
                         <div class="col">
-                            <label>Valor do Horímetro (h) *</label>
+                            <label>Valor Atual do Horímetro *</label>
                             <input type="number" id="valor-horimetro" required placeholder="Ex: 12450">
                         </div>
                     </div>
@@ -124,52 +123,52 @@
                         <div class="col">
                             <label>Foto do Horímetro *</label>
                             <input type="file" id="foto-horimetro" accept="image/*" onchange="previewImg(this, 'prev-horimetro')">
-                            <img id="prev-horimetro" class="img-preview" src="#" alt="Preview do Horímetro" style="display:none;">
+                            <img id="prev-horimetro" class="img-preview" src="#" alt="Preview Horímetro" style="display:none;">
                         </div>
                     </div>
                 </fieldset>
 
-                <!-- Controle de Horas e Peças -->
+                <!-- Serviços e Peças -->
                 <fieldset>
-                    <legend>Serviço Executado e Peças</legend>
+                    <legend>Serviço Executado e Peças Aplicadas</legend>
                     <div class="row">
                         <div class="col">
-                            <label>Descrição dos Serviços Executados</label>
-                            <textarea id="descricao-servico" rows="4" placeholder="Descreva a manutenção detalhadamente..."></textarea>
+                            <label>Descrição Detalhada do Serviço</label>
+                            <textarea id="descricao-servico" rows="4" placeholder="O que foi feito na máquina..."></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label>Peças Aplicadas / Código</label>
-                            <textarea id="pecas-aplicadas" rows="3" placeholder="Ex: 1x Filtro de Óleo (Cod: 4432), 2l Óleo Hidráulico"></textarea>
+                            <label>Peças Aplicadas / Códigos</label>
+                            <textarea id="pecas-aplicadas" rows="3" placeholder="Ex: 1x Filtro de Combustível (Cod: 123), 4L Óleo Motor"></textarea>
                         </div>
                     </div>
                 </fieldset>
 
                 <!-- Evidências Fotográficas -->
                 <fieldset>
-                    <legend>Evidências Fotográficas do Serviço</legend>
+                    <legend>Evidências Fotográficas do Atendimento</legend>
                     <div class="row">
                         <div class="col">
-                            <label>Foto do Problema / Início</label>
+                            <label>Foto do Problema (Início)</label>
                             <input type="file" id="foto-antes" accept="image/*" onchange="previewImg(this, 'prev-antes')">
                             <img id="prev-antes" class="img-preview" src="#" alt="Preview Antes" style="display:none;">
                         </div>
                         <div class="col">
-                            <label>Foto da Solução / Concluído</label>
+                            <label>Foto do Serviço Concluído</label>
                             <input type="file" id="foto-depois" accept="image/*" onchange="previewImg(this, 'prev-depois')">
                             <img id="prev-depois" class="img-preview" src="#" alt="Preview Depois" style="display:none;">
                         </div>
                     </div>
                 </fieldset>
 
-                <!-- Botão de Assinatura -->
+                <!-- Assinatura -->
                 <div class="signature-section">
                     <button type="button" class="btn btn-orange" onclick="openSignatureModal()">
                         <i class="fa-solid fa-pen-nib"></i> Coletar Assinatura do Cliente
                     </button>
                     <div id="signature-status">❌ Assinatura não coletada</div>
-                    <img id="signature-preview" src="#" alt="Assinatura" style="display:none; max-width: 200px; border: 1px solid #ccc; margin-top: 10px;">
+                    <img id="signature-preview" src="#" alt="Assinatura" style="display:none;">
                 </div>
 
                 <div class="form-actions">
@@ -179,7 +178,7 @@
             </form>
         </section>
 
-        <!-- HISTÓRICO DE O.S. SECTION -->
+        <!-- SEÇÃO: HISTÓRICO -->
         <section id="historico-section">
             <h1>Histórico de Ordens de Serviço</h1>
             <div class="table-responsive">
@@ -203,17 +202,17 @@
     <div id="signature-modal" class="modal">
         <div class="modal-content">
             <h3>Assinatura Digital do Cliente</h3>
-            <p>Use o dedo ou o mouse para assinar na área abaixo:</p>
-            <canvas id="signature-pad" width="450" height="200"></canvas>
+            <p>Assine com o dedo (celular) ou usando o mouse:</p>
+            <canvas id="signature-pad" width="400" height="200"></canvas>
             <div class="modal-buttons">
                 <button type="button" class="btn btn-red" onclick="clearSignature()"><i class="fa-solid fa-eraser"></i> Limpar</button>
                 <button type="button" class="btn btn-gray" onclick="closeSignatureModal()"><i class="fa-solid fa-xmark"></i> Sair</button>
-                <button type="button" class="btn btn-green" onclick="saveSignature()"><i class="fa-solid fa-check"></i> Salvar Assinatura</button>
+                <button type="button" class="btn btn-green" onclick="saveSignature()"><i class="fa-solid fa-check"></i> Confirmar Assinatura</button>
             </div>
         </div>
     </div>
 
-    <!-- ÁREA OCULTA PARA RENDERIZAÇÃO E IMPRESSÃO DO PDF -->
+    <!-- DIV INVISÍVEL APENAS PARA PARSER DO PDF -->
     <div id="pdf-template" style="display: none;"></div>
 
 </body>
