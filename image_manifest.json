@@ -1,0 +1,18 @@
+{
+  "status": "success",
+  "results": [
+    {
+      "status": "success",
+      "path": "https://mgx-backend-cdn.metadl.com/generate/images/1266572/2026-05-22/pcj7bpiaagsa/icon-512.png",
+      "absolute_path": "https://mgx-backend-cdn.metadl.com/generate/images/1266572/2026-05-22/pcj7bpiaagsa/icon-512.png",
+      "url": "https://mgx-backend-cdn.metadl.com/generate/images/1266572/2026-05-22/pcj7bpiaagsa/icon-512.png",
+      "message": "Image generated successfully.\n\nNote: The image is on CDN and will be displayed automatically. Just describe what you created briefly, no need to mention filenames or URLs.",
+      "description": "App icon for MARLIFT SERVICE, a forklift maintenance company. Features a bold wrench tool icon in golden yellow (#f5b400) on a dark charcoal background (#2b2b2b), with the letters 'M' subtly integrated into the wrench design. Clean, modern, minimal style suitable for a mobile app icon. No text, just the icon symbol.",
+      "style": "minimalist",
+      "filename": "icon-512.png"
+    }
+  ],
+  "success_count": 1,
+  "failed_count": 0,
+  "message": "Generated 1/1 images"
+}
