@@ -2039,8 +2039,8 @@ function _doPDFRelatorioCliente(c, osList, dataIni, dataFim) {
 
   // ===== CAPA =====
   doc.setFillColor(30,30,46); doc.rect(0,0,W,38,'F');
-  doc.setFillColor(255,102,0); doc.rect(0,35,W,3,'F');
-  doc.setTextColor(255,102,0); doc.setFontSize(18); doc.setFont('helvetica','bold');
+  doc.setFillColor(245,180,0); doc.rect(0,35,W,3,'F');
+  doc.setTextColor(245,180,0); doc.setFontSize(18); doc.setFont('helvetica','bold');
   doc.text(empresa, M, 13);
   doc.setTextColor(200,200,200); doc.setFontSize(9); doc.setFont('helvetica','normal');
   doc.text('RELATÓRIO DE ATENDIMENTOS — ' + c.nome.toUpperCase(), M, 20);
@@ -2053,7 +2053,7 @@ function _doPDFRelatorioCliente(c, osList, dataIni, dataFim) {
   y = 44;
 
   // ===== RESUMO DO CLIENTE =====
-  secao('DADOS DO CLIENTE', '#ff6600', '#ffffff');
+  secao('DADOS DO CLIENTE', '#1e1e2e', '#ffffff');
   check(24);
   doc.setDrawColor(229,231,235); doc.setLineWidth(0.3); doc.rect(M,y,C,22,'S');
   doc.setTextColor(30,30,46); doc.setFontSize(10); doc.setFont('helvetica','bold');
@@ -2081,7 +2081,7 @@ function _doPDFRelatorioCliente(c, osList, dataIni, dataFim) {
   y += 23;
 
   // ===== LISTA DE OS =====
-  secao('ORDENS DE SERVIÇO', '#ff6600', '#ffffff');
+  secao('ORDENS DE SERVIÇO', '#1e1e2e', '#ffffff');
   osList.forEach((os, idx) => {
     check(36);
     const dt  = new Date(os.data);
@@ -2164,14 +2164,14 @@ function _doPDF(os) {
 
   // ===== CABEÇALHO =====
   doc.setFillColor(30, 30, 46); doc.rect(0, 0, W, 32, 'F');
-  doc.setFillColor(255, 102, 0); doc.rect(0, 29, W, 3, 'F');
-  doc.setTextColor(255, 102, 0); doc.setFontSize(18); doc.setFont('helvetica','bold');
+  doc.setFillColor(245, 180, 0); doc.rect(0, 29, W, 3, 'F');
+  doc.setTextColor(245, 180, 0); doc.setFontSize(18); doc.setFont('helvetica','bold');
   doc.text(empresa, M, 12);
   doc.setTextColor(200, 200, 200); doc.setFontSize(8); doc.setFont('helvetica','normal');
   doc.text('ORDEM DE SERVIÇO', M, 18);
   if (cfg.cnpj) doc.text('CNPJ: ' + cfg.cnpj, M, 23);
   if (cfg.tel) doc.text('Tel: ' + cfg.tel, M, 27.5);
-  doc.setFillColor(255, 102, 0); doc.roundedRect(W - M - 42, 5, 42, 16, 3, 3, 'F');
+  doc.setFillColor(245, 180, 0); doc.roundedRect(W - M - 42, 5, 42, 16, 3, 3, 'F');
   doc.setTextColor(255, 255, 255); doc.setFontSize(14); doc.setFont('helvetica','bold');
   doc.text(numOS, W - M - 21, 14.5, { align: 'center' });
   doc.setFontSize(7.5); doc.setFont('helvetica','normal');
@@ -2204,7 +2204,7 @@ function _doPDF(os) {
   }
 
   // ===== CLIENTE =====
-  secao('CLIENTE', '#ff6600', '#ffffff');
+  secao('CLIENTE', '#1e1e2e', '#ffffff');
   check(28);
   doc.setDrawColor(229,231,235); doc.setLineWidth(0.3); doc.rect(M, y, C, 26, 'S');
   doc.setTextColor(30,30,46); doc.setFontSize(11); doc.setFont('helvetica','bold');
@@ -2238,7 +2238,7 @@ function _doPDF(os) {
   }
 
   // ===== CHAMADO =====
-  secao('CHAMADO', '#fee2e2', '#b91c1c');
+  secao('CHAMADO', '#1e1e2e', '#ffffff');
   check(20);
   doc.setDrawColor(229,231,235); doc.rect(M, y, C, 18, 'S');
   doc.setTextColor(30,30,46); doc.setFontSize(9); doc.setFont('helvetica','bold');
@@ -2250,7 +2250,7 @@ function _doPDF(os) {
 
   // ===== AGENDAMENTO =====
   if (os.agendaData) {
-    secao('AGENDAMENTO', '#dbeafe', '#1d4ed8');
+    secao('AGENDAMENTO', '#1e1e2e', '#ffffff');
     check(14);
     doc.setDrawColor(229,231,235); doc.rect(M, y, C, 12, 'S');
     doc.setTextColor(30,30,46); doc.setFontSize(9); doc.setFont('helvetica','normal');
@@ -2260,7 +2260,7 @@ function _doPDF(os) {
   }
 
   // ===== SERVIÇO EXECUTADO =====
-  secao('SERVIÇO EXECUTADO', '#ff6600', '#ffffff');
+  secao('SERVIÇO EXECUTADO', '#1e1e2e', '#ffffff');
   const srvLines = doc.splitTextToSize(os.servico || '--', C - 6);
   const srvH = srvLines.length * 4.5 + 6;
   check(srvH);
@@ -2283,7 +2283,7 @@ function _doPDF(os) {
 
   // ===== OBSERVAÇÕES =====
   if (os.obs) {
-    secao('OBSERVAÇÕES / RECOMENDAÇÕES', '#fef3c7', '#92400e');
+    secao('OBSERVAÇÕES / RECOMENDAÇÕES', '#1e1e2e', '#ffffff');
     const obsLines = doc.splitTextToSize(os.obs, C - 6);
     const obsH = obsLines.length * 4.5 + 6;
     check(obsH);
@@ -2299,7 +2299,7 @@ function _doPDF(os) {
   const logH = Math.max(20, logEntries.length * 4.5 + 16);
   check(logH);
   doc.setFillColor(40, 40, 60); doc.rect(M, y, C, logH, 'F');
-  doc.setTextColor(255, 102, 0); doc.setFontSize(16); doc.setFont('courier', 'bold');
+  doc.setTextColor(245, 180, 0); doc.setFontSize(16); doc.setFont('courier', 'bold');
   doc.text(os.tempo || '00:00:00', M + 4, y + 11);
   doc.setTextColor(180, 180, 180); doc.setFontSize(7.5); doc.setFont('helvetica', 'normal');
   let ly = y + 17;
@@ -2315,7 +2315,7 @@ function _doPDF(os) {
   // ===== FOTOS (TODAS SEM LIMITE) =====
   const osFotos = os.fotos || [];
   if (osFotos.length > 0) {
-    secao('FOTOS DE EVIDÊNCIA (' + osFotos.length + ')', '#ff6600', '#ffffff');
+    secao('FOTOS DE EVIDÊNCIA (' + osFotos.length + ')', '#1e1e2e', '#ffffff');
     y += 2;
     const fW = (C - 8) / 3, fH = fW * 0.75;
     // Processar todas as fotos em grupos de 3
@@ -2333,26 +2333,28 @@ function _doPDF(os) {
   }
 
   // ===== ASSINATURA =====
-  check(44);
+  check(50);
   doc.setDrawColor(229, 231, 235); doc.setLineWidth(0.4);
-  doc.rect(M, y, C, 40, 'S');
+  doc.rect(M, y, C, 46, 'S');
   doc.setTextColor(107, 114, 128); doc.setFontSize(8.5); doc.setFont('helvetica', 'bold');
   doc.text('ASSINATURA DO CLIENTE / RESPONSÁVEL', M + 3, y + 6);
   if (os.assinatura && os.assinatura.img) {
-    try { doc.addImage(os.assinatura.img, 'PNG', M + 3, y + 9, 75, 30); } catch(ex) {}
+    try { doc.addImage(os.assinatura.img, 'PNG', M + 3, y + 9, 75, 26); } catch(ex) {}
   } else {
     doc.setDrawColor(200, 200, 200);
     doc.line(M + 5, y + 23, M + C / 2 - 5, y + 23);
     doc.setTextColor(180, 180, 180); doc.setFontSize(8); doc.setFont('helvetica', 'normal');
-    doc.text('Assinatura do responsável', M + 3, y + 30);
+    doc.text('Assinatura do responsável', M + 3, y + 28);
   }
   doc.setTextColor(30, 30, 46); doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
   const respNome = (os.assinatura && os.assinatura.nome) ? os.assinatura.nome : '--';
-  doc.text(respNome, M + 3, y + 33);
+  doc.text('Responsável: ' + respNome, M + 3, y + 36);
+  doc.setTextColor(30, 30, 46); doc.setFont('helvetica', 'bold'); doc.setFontSize(10);
+  doc.text('Técnico: ' + (os.tecNome || '--'), M + 3, y + 42);
   doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(107, 114, 128);
-  const respDoc = (os.assinatura && os.assinatura.doc) ? 'RG/CPF: ' + os.assinatura.doc : 'RG/CPF: --';
-  doc.text(respDoc, M + 3, y + 38);
-  y += 43;
+  const respDoc = (os.assinatura && os.assinatura.doc) ? 'RG/CPF: ' + os.assinatura.doc : '';
+  if (respDoc) doc.text(respDoc, M + C / 2, y + 36);
+  y += 49;
 
   // ===== RODAPÉ EM TODAS AS PÁGINAS =====
   const totalPages = doc.getNumberOfPages();
@@ -2361,7 +2363,7 @@ function _doPDF(os) {
     doc.setFillColor(30, 30, 46); doc.rect(0, 286, W, 11, 'F');
     doc.setTextColor(140, 140, 140); doc.setFontSize(7); doc.setFont('helvetica', 'normal');
     doc.text(empresa + ' — Emitido em ' + now.toLocaleDateString('pt-BR') + ' — ' + numOS, W / 2, 292, { align: 'center' });
-    doc.setTextColor(255, 102, 0);
+    doc.setTextColor(245, 180, 0);
     doc.text(pg + ' / ' + totalPages, W - M, 292);
   }
 
